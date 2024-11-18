@@ -37,11 +37,13 @@ const user = {
   actions: {
     // 登录
     Login ({ commit }, userInfo) {
+      console.log(userInfo)
       return new Promise((resolve, reject) => {
         login(userInfo).then(response => {
-          const result = response.result
+          const result = response.data
           storage.set(ACCESS_TOKEN, result.token, new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
           commit('SET_TOKEN', result.token)
+          localStorage.setItem('token', result.token)
           resolve()
         }).catch(error => {
           reject(error)

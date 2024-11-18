@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 const userApi = {
-  Login: '/auth/login',
+  Login: '/login',
   Logout: '/auth/logout',
   ForgePassword: '/auth/forge-password',
   Register: '/auth/register',
@@ -28,6 +28,9 @@ export function login (parameter) {
   return request({
     url: userApi.Login,
     method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     data: parameter
   })
 }
